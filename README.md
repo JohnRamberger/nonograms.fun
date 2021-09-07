@@ -1,4 +1,4 @@
-# nonograms.fun
+# nonograms.fun [INACTIVE]
  nonograms.fun is a website that generates and corrects nonogram puzzles of any size and difficulty. 
  ## About
  I originally started this project as a way to learn web development while also satistying my curiosity with nonograms. I was introduced to nonograms in a club meeting for the math honor society at my high school, where another student attempted to create an algorithm to solve nonograms. While I never fully completed an algorithm to solve nonograms, I managed to create an algorithm to generate random nonogram puzzles of specified dimensions and difficulties while also creating an algorithm to check the completion of a nonogram puzzle (which is necessary due to most nonograms having multiple solutions). 
