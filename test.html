@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="js/cookies.js"></script>
+</head>
+<body>
+    <input type="submit" id="test" value="test">
+    <input type="submit" id="signup" value="signup">
+    <input id="first_name">
+</body>
+</html>
+<script type="text/javascript"> 
+    var ajaxurl = 'php/ajax.php';
+    $(document).ready(function(){
+        $('#test').click(function(){
+            var data = {action : 'test', name : 'testjohn', pass : 'test123'};
+            console.log(data);
+            $.ajax({
+                url:ajaxurl,
+                type:"POST",
+                dataType:'json',
+                data: data,
+                success: function(data){
+                    alert(data["result"]);
+                },
+                error: function(xhr, status, error){
+                    alert("error - " + xhr.status + ":" + xhr.statusText);
+                }
+            });
+        });
+        $('#signup').click(function(){
+            //username, email, password, score, nav_color, body_color, size, difficulty
+            var _token_id = "dafj23or";
+            var _img_url = "sidaopfji";
+            var _username = "John";
+            var _email = "rambergerjohn@gmail.com";
+            var _score = getCookie("score");
+            var _size = getCookie("size");
+            var _difficulty = getCookie("difficulty");
+            var data = {action: 'signup', token_id : _token_id, username: _username, img_url: _img_url, email: _email, score: _score, size: _size, difficulty: _difficulty};
+            console.log(data);
+            $.ajax({
+                url:ajaxurl,
+                type:"POST",
+                dataType:'json',
+                data:data,
+                success: function(data){
+                    alert(data["result"]);
+                },
+                error: function(xhr, status, error){
+                    alert("error - " + xhr.status + ":" + xhr.statusText + ":" + error);
+                }
+            });
+        });
+    });
+</script>

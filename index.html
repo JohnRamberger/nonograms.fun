@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google-signin-client_id" content="738393465798-7qq68301mqmjcnhtm01krong8kc5j2ar.apps.googleusercontent.com">
+
+    <meta name="keywords" content="nonogram, nonograms, nonograms.fun, puzzle, puzzles"/>
+    <meta name="description" content="Solve randomly generated nonogram puzzles of any size and difficulty!"/>
+    <meta name="rating" content="General"/>
+    <meta name="distribution" content="Global"/>
+    <meta name="coverage" content="Worldwide"/>
+    <meta name="url" content="https://www.nonograms.fun"/>
+    <meta name="identifier-URL" content="https://www.nonograms.fun"/>
+    <meta name="author" content="John Ramberger"/>
+    <meta name="revised" content="Monday, February 24th, 2020, 5:48 pm"/>
+    <meta name="subject" content="nonogram puzzles"/>
+
+    <title>nonograms.fun</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <div id="nav">
+        <span id="name_tag" class="filled tag"><div class="g-signin2" data-onsuccess="onSignIn"></div></span>
+        <h1>nonograms.fun</h1>
+        <span id="score"></span>
+    </div>
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/gridCreator.js"></script>
+    <script src="js/cookies.js"></script>
+    <script src="js/animator.js"></script>
+    <script src="js/000webhost.js"></script>
+    <script src="js/drag.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/savepuzzle.js"></script>
+
+    <script data-ad-client="ca-pub-5421950574832805" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+<body id="body">
+
+    <div id="buttons">
+        <div id="buttons1" class="buttons">
+            <div>
+                <input id="rows" type="number">
+                <h2>x</h2>
+                <input id="cols" type="number">
+            </div>
+        </div>
+        <div id="buttons2" class="buttons">
+            <select id="difficulty">
+                <option id="easy" value="3" selected="selected">easy</option>
+                <option id="medium" value="2.5">medium</option>
+                <option id="hard" value="1.5">hard</option>
+                <option id="extreme" value="-1.5">extreme</option>
+            </select>
+        </div>
+        <div id="buttons3" class="buttons">
+            <div id="update"><span onclick="newPuzzle()" >update</span></div>
+            <div id="check"><span onclick="checkSol()">check</span></div>
+            <div id="save"><span onclick="savePuzzle()">save</span></div>
+        </div>
+    </div>
+    <div id="main_puzzle">
+        <div id="trash"><span onclick="console.log('test');deletepuzzle()" class="fa fa-trash fa-3x"></span>
+        </div>
+        <div class="col-clues" id="col-clues"></div>
+        <div class="row-clues" id="row-clues"></div>
+        <div class="container" id="container"></div>
+    </div>
+
+    <!--<input type="color" id="navpick" value="#ffffff" onchange="readNAVCOLOR(this)">
+        <span id="navpickspan" onclick="opennavcolorpicker()"></span>
+    <input type="color" id="colpick" value="#ffffff" onchange="readCOLOR(this)">
+        <span id="colpickspan" onclick="opencolorpicker()"></span>
+        -->
+    <!--
+    <form>
+        <input id="imgpick" type="file" onchange="readURL(this)">
+    </form>
+        <span id="imgpickspan" onclick="openimagepicker()"></span>
+        -->
+    <!--<button onclick="signOut()">log out</button>-->
+    <div id="loader" style="display: block;"></div>
+    <div id="cover"></div>
+
+    <div id="menu">
+        <div id="card">
+            <a href="#">leaderboard</a><br>
+            <a href="#">test</a><br>
+            <a href="#">test</a><br>
+            <a href="#">test</a><br>
+            <a href="#">test</a>
+        </div>
+    </div>
+
+    <script>startup()</script>
+</body>
+</html>

@@ -1,0 +1,635 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Merriweather&display=swap');
+$width:40vw;
+$primary:#ffffff;
+$font-color:black;
+$puzzleheight:180px;
+
+$green:#2ecc71;
+$red:#e74c3c;
+
+*{
+    margin: 0;
+    padding: 0;
+    //font-family: 'montserrat alternates';
+    color: $font-color;
+}
+body{
+    margin-top: 5em;
+    background-repeat: no-repeat;
+    background-size: cover;
+    //background-color: #cccccc;
+}
+#nav{
+    height: 5em;
+    width: 100%;
+    border-bottom:1px solid rgba(0, 0, 0, 0.25);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    font-family: 'montserrat alternates';
+    h1{
+        grid-column: 3;
+        text-align: center;
+        margin: auto;
+        font-weight: 400;
+        font-size: 35px;
+    }
+    span{
+        margin: auto;
+        text-align: center;
+        font-weight: 200;
+    }
+    #tag, #name_tag{
+        grid-column: 2;
+    }
+    #tag2{
+        grid-column: 4;
+    }
+    #score{
+        grid-column: 4;
+    }
+    div{
+        margin: auto;
+        font-family: unset;
+    }
+}
+#buttons{
+    height: 5em;
+    width: 80%;
+    margin-left: 10%;
+    display: grid;
+    position: relative;
+    grid-template-columns: repeat(3, 1fr);
+    font-family: 'montserrat alternates';
+    background: rgba($color: $primary, $alpha: .95);
+    z-index: 4;
+    .buttons{
+        grid-column: 0 / span 1;
+        display: grid;
+        height: 100%;
+        font-size: 15px;
+    }
+    #buttons1{
+        div{
+            margin: auto;
+        }
+        h2{
+            text-align: center;
+            font-weight: 400;
+            font-size: 20px;
+            vertical-align: middle;
+            height: 1.5em;
+            display: inline-block;
+        }
+        input{
+            width: 3em;
+            height: 1.5em;
+            display: inline-block;
+        }
+    }
+    #buttons2{
+        select{
+            margin: auto;
+            padding: 0.3em 1em;
+        }
+    }
+    #buttons3{
+        grid-template-columns: repeat(7, 1fr);
+        div{
+            grid-column: 3;
+            display: block;
+            margin: auto;
+            transition: transform 0.3s ease;
+            &:active{
+                transform: scale(0.90);
+            }
+        }
+        #check{
+            grid-column: 4;
+        }
+        #save{
+            grid-column: 5;
+            display: none;
+            > span{
+                padding: 0.3em 1.4em;
+            }
+        }
+        span{
+            padding: 0.3em 0.9em;
+            border: 1px solid black;
+            transition: all 0.3s ease;
+            user-select: none;
+            background-color: $primary;
+            cursor: pointer;
+            &:hover{
+                background-color: rgba(0, 0, 0, 0.2);
+            }
+        }
+    }
+}
+#main_puzzle{
+    height: calc(100vh - 10em);
+    overflow: scroll;
+    width: 60%;
+    margin: 0 auto;
+    position: relative;
+}
+.col-clues{
+    width: fit-content;
+    height:fit-content;
+    position: sticky;
+    top: 0;
+    min-height: 4em;
+    max-height: 50%;
+    overflow: auto;
+    border: 1px solid black;
+    border-bottom: 2px solid black;
+    border-left: none;
+    display: grid;
+    font-family: 'montserrat alternates';
+    font-size: 13px;
+    background: rgba($color: $primary, $alpha: .95);
+    z-index: 2;
+}
+.row-clues{
+    height: fit-content;
+    position: sticky;
+    left: 0;
+    float: left;
+    width:fit-content;
+    min-width: 4em;
+    max-width: 50%;
+    border: 1px solid black;
+    border-right: 2px solid black;
+    border-top: none;
+    display: grid;
+    font-family: 'montserrat alternates';
+    font-size: 13px;
+    background: rgba($color: $primary, $alpha: .95);
+    z-index: 2;
+}
+.container{
+    //border: 1px solid rgba(0, 0, 0, 1);
+    display: grid;
+    background: rgba($color: $primary, $alpha: .95);
+    position: absolute;
+    z-index: 1;
+    grid-gap: 0;
+}
+#cover{
+    top: 1000px;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    position: fixed;
+    //transition: top 0.5s ease;
+    display: block;
+    opacity: 1;
+    color: $green;
+}
+#navpick, #colpick, #imgpick{
+    display: none;
+}
+#navpickspan{
+    position: absolute;
+    z-index: 6;
+    top: 1.5em;
+    left: 1em;
+    border-radius: 3em;
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+    border: 2px solid black;
+}
+#colpickspan{
+    position: absolute;
+    z-index: 6;
+    top: 6.5em;
+    left: 1em;
+    border-radius: 3em;
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+    border: 2px solid black;
+}
+#imgpickspan{
+    position: absolute;
+    z-index: 6;
+    top: 6.5em;
+    left: 4em;
+    border-radius: 3em;
+    width: 2em;
+    height: 2em;
+    background-image: url("../p/icon-image-512.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    border: 2px solid black;
+}
+.tag{
+    &:hover{
+        text-decoration: underline;
+        cursor:pointer;
+    }
+}
+#wrapper{
+    height: calc(90vh - 5em);
+    width: 60vw;
+    margin: 0 auto;
+    position: relative;
+    display:grid;
+}
+#form1{
+    position: relative;
+    margin:auto;
+    height: 70%;
+    width: 80%;
+    min-width: 20em;
+    //border: 1px solid black;
+    > label{
+        font-family:merriweather;
+    }
+}
+#form{
+    height: 50%;
+    width: 50%;
+    position: relative;
+    margin: auto;
+    display: grid;
+}
+#goog{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    > div{
+        margin: auto;
+        border: 1px solid black;
+    }
+}
+.form1{
+    position: relative;
+    //height: 1em;
+    display: inline-block;
+    font-size: 15px;
+    padding: 0.2em 0;
+    font-family: merriweather;
+    width: calc(100% - 2em);
+    margin: 0.25em 1em;
+    //margin-bottom: 5%;
+    //margin: 1em 2em;
+    //border-radius: 3px;
+    
+}
+#submitinput{
+    position: relative;
+    //height: 1em;
+    font-size: 15px;
+    padding: 0.25em 0.5em;
+    float: right;
+    margin: 0 1em;
+}
+#nav2{
+    background: rgba($color: $primary, $alpha: .95);
+    height: 5em;
+    width: 100%;
+    border-bottom:1px solid rgba(0, 0, 0, 0.25);
+    grid-template-columns: repeat(3, 1fr);
+    top: 0;
+    position: sticky;
+    display: grid;
+    z-index: 9;
+    font-family: 'montserrat alternates';
+    span{
+        margin: auto;
+    }
+}
+#puzzles_div, #create_div{
+    width: 80%;
+    grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    margin: auto;
+}
+#stats_div{
+    height: 100vh;
+    position: relative;
+    width: 100%;
+    //background-color: green;
+    display: grid;
+}
+#plus{
+    display: grid;
+    padding: 10px 0;
+    position: relative;
+    transform: scale(0.90);
+    transition: 0.3s transform ease, 0.3s background-color ease;
+    border-radius: 10px;
+    background-color: rgba($color: #b1e3e1, $alpha: 0.2);
+    font-size: 45px;
+    div{
+        margin: auto;
+    }
+    &:hover{
+        transform: scale(1);
+        background-color: rgba($color: #b1e3e1, $alpha: 0.5);
+        cursor:pointer;
+    }
+}
+.active{
+    text-decoration: underline;
+}
+.set{
+    //border: 1px solid black;
+    display: block;
+    padding: 10px 0;
+    position: relative;
+    transform: scale(0.90);
+    transition: 0.3s transform ease, 0.3s background-color ease;
+    border-radius: 10px;
+    background-color: white;
+    &:active{
+        background-color: rgba($color: #b1e3e1, $alpha: 0.5);
+    }
+    &:hover{
+        transform: scale(1);
+        > .puzz{
+            margin-left: 3%;
+        }
+        > .puzzinfo{
+            opacity: 1;
+            margin-left:53%;
+        }
+    }
+}
+.puzz{
+    cursor: pointer;
+    position: absolute;
+    width: 50%;
+    border: 1px solid black;
+    float: left;
+    display: grid;
+    overflow: hidden;
+    margin-left: 18%;
+    z-index: 2;
+    transition: 0.3s margin-left ease;
+    border-radius: 10px 0 10px 10px;
+}
+.puzzinfo{
+    background: white;
+    border: 1px solid black;
+    display: grid;
+    height: $puzzleheight;
+    width: 44%;
+    z-index: 1;
+    opacity: 0.5;
+    margin-left: 41%;
+    transition: 0.3s margin-left ease, 0.3s opacity ease;
+    border-radius: 0 10px 10px 0;
+    overflow-x: wrap;
+    overflow-y:hidden;
+    
+    > div{
+        margin: auto;
+        height: 80%;
+        width: 80%;
+    }
+    > span{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+}
+a{
+    text-decoration: inherit;
+}
+#plane{
+    cursor: pointer;
+    &:hover{
+        color: red;
+    }
+}
+#loader{
+    width: 5vw;
+    height: 5vw;
+    position: fixed;
+    top: 30vh;
+    left: 47.5vw;
+    background-image: url("../p/805.gif");
+    background-size: cover;
+}
+#trash{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    span{
+        margin: auto;
+        &:hover{
+            color: red;
+            cursor: pointer;
+        }
+    }
+}
+#split{
+    height: calc(100vh - 5em);
+    width: 100%;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    #image{
+        left:0;
+    }
+    #scratch{
+        right: 0;
+    }
+    #input{
+        position: absolute;
+        pointer-events: none;
+        height: 4em;
+        width: 10em;
+        top: calc(50% - 2em);
+        left: calc(50% - 5em);
+        display: grid;
+        transition: 0.3s opacity ease;
+        opacity:0;
+        grid-template-columns: repeat(3, 1fr);
+        font-size: 50px;
+        
+        i{
+            margin: auto;
+        }
+        input{
+            pointer-events: auto;
+            margin: auto;
+            width: 80%;
+            font-size: 40px;
+            padding: 0.2em 0.3em;
+            font-family: 'montserrat';
+            &:focus{
+                box-shadow: 0px 0px 10px rgb(0, 140, 255);
+            }
+        }
+    }
+    #scratch, #image{
+        transition: 0.3s transform ease, 0.3s background-color ease, 0.1s opacity ease, 0.3s left ease, 0.3s right ease, 0.3s width ease;
+        transform: scale(0.9);
+        position: relative;
+        background-color: rgba($color: #b1e3e1, $alpha: 0.1);
+        cursor: pointer;
+        display: grid;
+        &:hover{
+            background-color: rgba($color: #b1e3e1, $alpha: 0.5);
+            transform: scale(1);
+        }
+
+        > div{
+            //border: 1px solid black;
+            transition:0.3s transform ease;
+            height: 20%;
+            max-height: 8em;
+            width: 30%;
+            margin: auto;
+            display: grid;
+            position: relative;
+            
+            div{
+                //image inside
+                //border: 1px solid red;
+                display: grid;
+                div{
+                    margin: auto;
+                    font-size: 80px;
+                }
+                span{
+                    margin: auto;
+                    font-family: 'montserrat';
+                    font-size: 25px;
+                    text-align: center;
+                }
+            }
+            
+        }
+    }
+}
+#create{
+    display: none;
+    text-align: center;
+    margin: 10% 0;
+}
+#hamburger{
+    position: absolute;
+    height:3em;
+    width: 3em;
+    background: rgba($color: pink, $alpha: 0.2);
+    top: 1em;
+    left: 1em;
+    display: grid;
+    cursor: pointer;
+    transition: 0.3s width ease;
+    span{
+        width: 80%;
+        height: 0.4em;
+        margin: auto;
+        background: black;
+        position: relative;
+        display: block;
+    }
+    &:hover{
+        width: 3.2em;
+    }
+}
+.hamburger{
+    position:absolute;
+    top:18px;
+    left:18px;
+    z-index:100;
+    background: rgba(white, 0.85);
+    height: 48px;
+    width:48px;
+    border-radius:5px;
+    backdrop-filter:blur(5px);
+    > span{
+        display:block;
+        width: 32px;
+        height:4px;
+        background: black;
+        border-radius:4px;
+        position:absolute;
+        left:8px;
+        transition: .25s ease-in-out;
+        &:first-child{
+        top:10px;
+        }
+        &:nth-child(2){
+        top:20px;
+        }
+        &:last-child{
+        top:30px;
+        }
+        
+    }
+    &:hover{
+        > span{
+        width: 34px;
+        } 
+    }
+}
+#menu-toggle{
+    position:fixed;
+    transform:translateX(-500px);
+    &:checked{
+        ~ .hamburger{
+            > span{
+                &:first-child{
+                transform:translateY(10px) rotate(45deg);
+                }
+                &:nth-child(2){
+                opacity:0;
+                }
+                &:last-child{
+                transform:translateY(-10px) rotate(-45deg);
+                }
+            }
+        }
+        ~ #menu{
+            display: grid;
+            #card{
+                opacity: 1;
+            }
+        }
+    }
+}
+#menu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    background: rgba($color: white, $alpha: 0.85);
+    z-index: 15;
+    display: none;
+    #card{
+        display: grid;
+        width: 15em;
+        height: 20em;
+        margin: auto;
+        background: white;
+        box-shadow: 0 0 8px black;
+        padding: 2.5em;
+        opacity: 0;
+        transition: 0.3s opacity ease;
+        a{
+            font-family: 'montserrat';
+            font-weight: 300;
+            font-size: 30px;
+            text-decoration: none;
+            margin: auto;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+}

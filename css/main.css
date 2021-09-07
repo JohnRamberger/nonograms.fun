@@ -1,0 +1,776 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Merriweather&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  color: black;
+}
+
+body {
+  margin-top: 5em;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#nav {
+  height: 5em;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[5];
+      grid-template-columns: repeat(5, 1fr);
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  font-family: 'montserrat alternates';
+}
+
+#nav h1 {
+  -ms-grid-column: 3;
+  grid-column: 3;
+  text-align: center;
+  margin: auto;
+  font-weight: 400;
+  font-size: 35px;
+}
+
+#nav span {
+  margin: auto;
+  text-align: center;
+  font-weight: 200;
+}
+
+#nav #tag, #nav #name_tag {
+  -ms-grid-column: 2;
+  grid-column: 2;
+}
+
+#nav #tag2 {
+  -ms-grid-column: 4;
+  grid-column: 4;
+}
+
+#nav #score {
+  -ms-grid-column: 4;
+  grid-column: 4;
+}
+
+#nav div {
+  margin: auto;
+  font-family: unset;
+}
+
+#buttons {
+  height: 5em;
+  width: 80%;
+  margin-left: 10%;
+  display: -ms-grid;
+  display: grid;
+  position: relative;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  font-family: 'montserrat alternates';
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 4;
+}
+
+#buttons .buttons {
+  grid-column: 0 / span 1;
+  display: -ms-grid;
+  display: grid;
+  height: 100%;
+  font-size: 15px;
+}
+
+#buttons #buttons1 div {
+  margin: auto;
+}
+
+#buttons #buttons1 h2 {
+  text-align: center;
+  font-weight: 400;
+  font-size: 20px;
+  vertical-align: middle;
+  height: 1.5em;
+  display: inline-block;
+}
+
+#buttons #buttons1 input {
+  width: 3em;
+  height: 1.5em;
+  display: inline-block;
+}
+
+#buttons #buttons2 select {
+  margin: auto;
+  padding: 0.3em 1em;
+}
+
+#buttons #buttons3 {
+  -ms-grid-columns: (1fr)[7];
+      grid-template-columns: repeat(7, 1fr);
+}
+
+#buttons #buttons3 div {
+  -ms-grid-column: 3;
+  grid-column: 3;
+  display: block;
+  margin: auto;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+
+#buttons #buttons3 div:active {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+#buttons #buttons3 #check {
+  -ms-grid-column: 4;
+  grid-column: 4;
+}
+
+#buttons #buttons3 #save {
+  -ms-grid-column: 5;
+  grid-column: 5;
+  display: none;
+}
+
+#buttons #buttons3 #save > span {
+  padding: 0.3em 1.4em;
+}
+
+#buttons #buttons3 span {
+  padding: 0.3em 0.9em;
+  border: 1px solid black;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+#buttons #buttons3 span:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+#main_puzzle {
+  height: calc(100vh - 10em);
+  overflow: scroll;
+  width: 60%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.col-clues {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  min-height: 4em;
+  max-height: 50%;
+  overflow: auto;
+  border: 1px solid black;
+  border-bottom: 2px solid black;
+  border-left: none;
+  display: -ms-grid;
+  display: grid;
+  font-family: 'montserrat alternates';
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 2;
+}
+
+.row-clues {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  float: left;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  min-width: 4em;
+  max-width: 50%;
+  border: 1px solid black;
+  border-right: 2px solid black;
+  border-top: none;
+  display: -ms-grid;
+  display: grid;
+  font-family: 'montserrat alternates';
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 2;
+}
+
+.container {
+  display: -ms-grid;
+  display: grid;
+  background: rgba(255, 255, 255, 0.95);
+  position: absolute;
+  z-index: 1;
+  grid-gap: 0;
+}
+
+#cover {
+  top: 1000px;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  position: fixed;
+  display: block;
+  opacity: 1;
+  color: #2ecc71;
+}
+
+#navpick, #colpick, #imgpick {
+  display: none;
+}
+
+#navpickspan {
+  position: absolute;
+  z-index: 6;
+  top: 1.5em;
+  left: 1em;
+  border-radius: 3em;
+  width: 2em;
+  height: 2em;
+  cursor: pointer;
+  border: 2px solid black;
+}
+
+#colpickspan {
+  position: absolute;
+  z-index: 6;
+  top: 6.5em;
+  left: 1em;
+  border-radius: 3em;
+  width: 2em;
+  height: 2em;
+  cursor: pointer;
+  border: 2px solid black;
+}
+
+#imgpickspan {
+  position: absolute;
+  z-index: 6;
+  top: 6.5em;
+  left: 4em;
+  border-radius: 3em;
+  width: 2em;
+  height: 2em;
+  background-image: url("../p/icon-image-512.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border: 2px solid black;
+}
+
+.tag:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#wrapper {
+  height: calc(90vh - 5em);
+  width: 60vw;
+  margin: 0 auto;
+  position: relative;
+  display: -ms-grid;
+  display: grid;
+}
+
+#form1 {
+  position: relative;
+  margin: auto;
+  height: 70%;
+  width: 80%;
+  min-width: 20em;
+}
+
+#form1 > label {
+  font-family: merriweather;
+}
+
+#form {
+  height: 50%;
+  width: 50%;
+  position: relative;
+  margin: auto;
+  display: -ms-grid;
+  display: grid;
+}
+
+#goog {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+}
+
+#goog > div {
+  margin: auto;
+  border: 1px solid black;
+}
+
+.form1 {
+  position: relative;
+  display: inline-block;
+  font-size: 15px;
+  padding: 0.2em 0;
+  font-family: merriweather;
+  width: calc(100% - 2em);
+  margin: 0.25em 1em;
+}
+
+#submitinput {
+  position: relative;
+  font-size: 15px;
+  padding: 0.25em 0.5em;
+  float: right;
+  margin: 0 1em;
+}
+
+#nav2 {
+  background: rgba(255, 255, 255, 0.95);
+  height: 5em;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  top: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  display: -ms-grid;
+  display: grid;
+  z-index: 9;
+  font-family: 'montserrat alternates';
+}
+
+#nav2 span {
+  margin: auto;
+}
+
+#puzzles_div, #create_div {
+  width: 80%;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  display: -ms-grid;
+  display: grid;
+  margin: auto;
+}
+
+#stats_div {
+  height: 100vh;
+  position: relative;
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+}
+
+#plus {
+  display: -ms-grid;
+  display: grid;
+  padding: 10px 0;
+  position: relative;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+  -webkit-transition: 0.3s background-color ease, 0.3s -webkit-transform ease;
+  transition: 0.3s background-color ease, 0.3s -webkit-transform ease;
+  transition: 0.3s transform ease, 0.3s background-color ease;
+  transition: 0.3s transform ease, 0.3s background-color ease, 0.3s -webkit-transform ease;
+  border-radius: 10px;
+  background-color: rgba(177, 227, 225, 0.2);
+  font-size: 45px;
+}
+
+#plus div {
+  margin: auto;
+}
+
+#plus:hover {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  background-color: rgba(177, 227, 225, 0.5);
+  cursor: pointer;
+}
+
+.active {
+  text-decoration: underline;
+}
+
+.set {
+  display: block;
+  padding: 10px 0;
+  position: relative;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+  -webkit-transition: 0.3s background-color ease, 0.3s -webkit-transform ease;
+  transition: 0.3s background-color ease, 0.3s -webkit-transform ease;
+  transition: 0.3s transform ease, 0.3s background-color ease;
+  transition: 0.3s transform ease, 0.3s background-color ease, 0.3s -webkit-transform ease;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.set:active {
+  background-color: rgba(177, 227, 225, 0.5);
+}
+
+.set:hover {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.set:hover > .puzz {
+  margin-left: 3%;
+}
+
+.set:hover > .puzzinfo {
+  opacity: 1;
+  margin-left: 53%;
+}
+
+.puzz {
+  cursor: pointer;
+  position: absolute;
+  width: 50%;
+  border: 1px solid black;
+  float: left;
+  display: -ms-grid;
+  display: grid;
+  overflow: hidden;
+  margin-left: 18%;
+  z-index: 2;
+  -webkit-transition: 0.3s margin-left ease;
+  transition: 0.3s margin-left ease;
+  border-radius: 10px 0 10px 10px;
+}
+
+.puzzinfo {
+  background: white;
+  border: 1px solid black;
+  display: -ms-grid;
+  display: grid;
+  height: 180px;
+  width: 44%;
+  z-index: 1;
+  opacity: 0.5;
+  margin-left: 41%;
+  -webkit-transition: 0.3s margin-left ease, 0.3s opacity ease;
+  transition: 0.3s margin-left ease, 0.3s opacity ease;
+  border-radius: 0 10px 10px 0;
+  overflow-x: wrap;
+  overflow-y: hidden;
+}
+
+.puzzinfo > div {
+  margin: auto;
+  height: 80%;
+  width: 80%;
+}
+
+.puzzinfo > span {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: inherit;
+}
+
+#plane {
+  cursor: pointer;
+}
+
+#plane:hover {
+  color: red;
+}
+
+#loader {
+  width: 5vw;
+  height: 5vw;
+  position: fixed;
+  top: 30vh;
+  left: 47.5vw;
+  background-image: url("../p/805.gif");
+  background-size: cover;
+}
+
+#trash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+#trash span {
+  margin: auto;
+}
+
+#trash span:hover {
+  color: red;
+  cursor: pointer;
+}
+
+#split {
+  height: calc(100vh - 5em);
+  width: 100%;
+  position: relative;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+}
+
+#split #image {
+  left: 0;
+}
+
+#split #scratch {
+  right: 0;
+}
+
+#split #input {
+  position: absolute;
+  pointer-events: none;
+  height: 4em;
+  width: 10em;
+  top: calc(50% - 2em);
+  left: calc(50% - 5em);
+  display: -ms-grid;
+  display: grid;
+  -webkit-transition: 0.3s opacity ease;
+  transition: 0.3s opacity ease;
+  opacity: 0;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  font-size: 50px;
+}
+
+#split #input i {
+  margin: auto;
+}
+
+#split #input input {
+  pointer-events: auto;
+  margin: auto;
+  width: 80%;
+  font-size: 40px;
+  padding: 0.2em 0.3em;
+  font-family: 'montserrat';
+}
+
+#split #input input:focus {
+  -webkit-box-shadow: 0px 0px 10px #008cff;
+          box-shadow: 0px 0px 10px #008cff;
+}
+
+#split #scratch, #split #image {
+  -webkit-transition: 0.3s background-color ease, 0.1s opacity ease, 0.3s left ease, 0.3s right ease, 0.3s width ease, 0.3s -webkit-transform ease;
+  transition: 0.3s background-color ease, 0.1s opacity ease, 0.3s left ease, 0.3s right ease, 0.3s width ease, 0.3s -webkit-transform ease;
+  transition: 0.3s transform ease, 0.3s background-color ease, 0.1s opacity ease, 0.3s left ease, 0.3s right ease, 0.3s width ease;
+  transition: 0.3s transform ease, 0.3s background-color ease, 0.1s opacity ease, 0.3s left ease, 0.3s right ease, 0.3s width ease, 0.3s -webkit-transform ease;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+  position: relative;
+  background-color: rgba(177, 227, 225, 0.1);
+  cursor: pointer;
+  display: -ms-grid;
+  display: grid;
+}
+
+#split #scratch:hover, #split #image:hover {
+  background-color: rgba(177, 227, 225, 0.5);
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+#split #scratch > div, #split #image > div {
+  -webkit-transition: 0.3s -webkit-transform ease;
+  transition: 0.3s -webkit-transform ease;
+  transition: 0.3s transform ease;
+  transition: 0.3s transform ease, 0.3s -webkit-transform ease;
+  height: 20%;
+  max-height: 8em;
+  width: 30%;
+  margin: auto;
+  display: -ms-grid;
+  display: grid;
+  position: relative;
+}
+
+#split #scratch > div div, #split #image > div div {
+  display: -ms-grid;
+  display: grid;
+}
+
+#split #scratch > div div div, #split #image > div div div {
+  margin: auto;
+  font-size: 80px;
+}
+
+#split #scratch > div div span, #split #image > div div span {
+  margin: auto;
+  font-family: 'montserrat';
+  font-size: 25px;
+  text-align: center;
+}
+
+#create {
+  display: none;
+  text-align: center;
+  margin: 10% 0;
+}
+
+#hamburger {
+  position: absolute;
+  height: 3em;
+  width: 3em;
+  background: rgba(255, 192, 203, 0.2);
+  top: 1em;
+  left: 1em;
+  display: -ms-grid;
+  display: grid;
+  cursor: pointer;
+  -webkit-transition: 0.3s width ease;
+  transition: 0.3s width ease;
+}
+
+#hamburger span {
+  width: 80%;
+  height: 0.4em;
+  margin: auto;
+  background: black;
+  position: relative;
+  display: block;
+}
+
+#hamburger:hover {
+  width: 3.2em;
+}
+
+.hamburger {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.85);
+  height: 48px;
+  width: 48px;
+  border-radius: 5px;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+}
+
+.hamburger > span {
+  display: block;
+  width: 32px;
+  height: 4px;
+  background: black;
+  border-radius: 4px;
+  position: absolute;
+  left: 8px;
+  -webkit-transition: .25s ease-in-out;
+  transition: .25s ease-in-out;
+}
+
+.hamburger > span:first-child {
+  top: 10px;
+}
+
+.hamburger > span:nth-child(2) {
+  top: 20px;
+}
+
+.hamburger > span:last-child {
+  top: 30px;
+}
+
+.hamburger:hover > span {
+  width: 34px;
+}
+
+#menu-toggle {
+  position: fixed;
+  -webkit-transform: translateX(-500px);
+          transform: translateX(-500px);
+}
+
+#menu-toggle:checked ~ .hamburger > span:first-child {
+  -webkit-transform: translateY(10px) rotate(45deg);
+          transform: translateY(10px) rotate(45deg);
+}
+
+#menu-toggle:checked ~ .hamburger > span:nth-child(2) {
+  opacity: 0;
+}
+
+#menu-toggle:checked ~ .hamburger > span:last-child {
+  -webkit-transform: translateY(-10px) rotate(-45deg);
+          transform: translateY(-10px) rotate(-45deg);
+}
+
+#menu-toggle:checked ~ #menu {
+  display: -ms-grid;
+  display: grid;
+}
+
+#menu-toggle:checked ~ #menu #card {
+  opacity: 1;
+}
+
+#menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: -ms-grid;
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 15;
+  display: none;
+}
+
+#menu #card {
+  display: -ms-grid;
+  display: grid;
+  width: 15em;
+  height: 20em;
+  margin: auto;
+  background: white;
+  -webkit-box-shadow: 0 0 8px black;
+          box-shadow: 0 0 8px black;
+  padding: 2.5em;
+  opacity: 0;
+  -webkit-transition: 0.3s opacity ease;
+  transition: 0.3s opacity ease;
+}
+
+#menu #card a {
+  font-family: 'montserrat';
+  font-weight: 300;
+  font-size: 30px;
+  text-decoration: none;
+  margin: auto;
+}
+
+#menu #card a:hover {
+  text-decoration: underline;
+}
+/*# sourceMappingURL=main.css.map */

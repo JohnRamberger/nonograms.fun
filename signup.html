@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="738393465798-c7pjj4omdms8p1iaj6uhm91rpqbgpsip.apps.googleusercontent.com">
+
+    <title>nonograms.fun | signup/login</title>
+    <link rel="stylesheet" href="css/main.css">
+    <div id="nav">
+        <span id="tag" class="empty">back</span>
+        <h1>nonograms.fun</h1>
+        <span id="tag2" class="login">login</span>
+    </div>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/cookies.js"></script>
+    <script src="js/000webhost.js"></script>
+    <script src="js/background.js"></script>
+    <script src="js/database.js"></script>
+    
+</head>
+<body id="body">
+    <div id="wrapper">
+        <div id="form">
+            <div id="goog">
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            </div>
+            <div id="form1">
+                <label for="username">Username:</label><br>
+                <input type="text" name="username" class="form1" id="usernameinput"><br>
+
+                <label for="email">Email:</label><br>
+                <input type="text" name="email" class="form1" id="emailinput"><br>
+
+                <label for="password">Password:</label><br>
+                <input type="password" name="password" class="form1" id="passwordinput"><br>
+
+                <label for="confirmpassword">Confirm Password:</label><br>
+                <input type="password" name="confirmpassword" class="form1" id="confirmpasswordinput"><br><br>
+
+                <input type="submit" name="submit" value="submit" id="submitinput">
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
